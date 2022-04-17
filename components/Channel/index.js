@@ -5,8 +5,15 @@ const Channel = ({ channel }) => {
   const channelList = contents.map(block => {
     if (block.class === "Image") {
       return (
-        <div className="w-full flex justify-center items-center" key={block.id}>
+        <div className="grid grid-cols-2">
+        <div className="w-full flex justify-center flex-col items-center" key={block.id}>
+          <pre className="text-slate-800 text-xs w-full overflow-clip">
+            {JSON.stringify(block, null, 2)}
+          </pre>
+        </div>
+        <div className="w-full flex justify-center h-fit items-center" key={block.id + "img"}>
           <img src={block.image.large.url} alt={block.image.alt} />
+        </div>
         </div>
       )
     }
@@ -17,8 +24,7 @@ const Channel = ({ channel }) => {
       <div className="text-center text-6xl w-1/3 font-black p-6 text-slate-800">
         {channel?.title}
       </div>
-      <div className="flex flex-col w-1/3 space-y-3">
-        {/* <pre>{JSON.stringify(channel, null, 2)}</pre> */}
+      <div className="flex flex-col w-2/3">
         {channelList}
       </div>
     </div>
